@@ -102,12 +102,14 @@ I used AI as an accelerator
 
 - **Integer-cents arithmetic for validation:** I specified that the Zod `.refine()` for allocation sum must use `Math.round(percent * 100)` summed and compared to `10000` — not `sum === 100` — because floating-point makes `60 + 40` occasionally not equal `100`. Claude implemented it, but the decision to do it this way was mine.
 
+- **Libraries to use:** Decided libraries to use to achive the required goal with example Zod,vitest vs jest etc.
+
 - **Project structure and layering:** I defined the separation — thin controllers, service layer for all business logic, store abstracted behind an interface. This makes the service unit-testable without HTTP and the store swappable to a real DB later.
 
 **Where LLM accelerated routine work:**
 
 - Scaffolding boilerplate (package.json, tsconfig, middleware wiring, route registration).
-- **Timezone handling:** I chose `Intl.DateTimeFormat` with `America/New_York` deliberately — zero dependencies, built into V8, handles DST automatically. I instructed Claude to use `formatToParts` to extract weekday/hour/minute in ET rather than relying on `Date.getDay()` which is local-time only. This is a subtle bug that catches people out in production (server in UTC, logic in ET).
+- `Intl.DateTimeFormat` with `America/New_York` deliberately — zero dependencies, built into V8, handles DST automatically.AI use `formatToParts` to extract weekday/hour/minute in ET rather than relying on `Date.getDay()` which is local-time only. This is a subtle bug that catches people out in production (server in UTC, logic in ET).
 - Writing the test cases once I defined what needed to be tested (boundary conditions for market hours, amount reconciliation assertions, store isolation via `afterEach`).
 - Generating documentation drafts (README, API.md) which I then reviewed and corrected.
 
