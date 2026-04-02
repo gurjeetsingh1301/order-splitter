@@ -1,4 +1,4 @@
-# Robo-Advisor Order Splitter API
+#Order Splitter API
 
 REST API that acts as an order splitter for a robo-advisor. Given a model portfolio (stocks with allocation percentages) and a total investment amount, the API splits the order into individual stock orders, determines execution timing based on US market hours, and stores historic orders in memory.
 
